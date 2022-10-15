@@ -9,7 +9,9 @@
                 "-g",
                 "${file}",
                 "-Ijson",
+                "-Iparser",
                 "json/*.cpp",
+                "parser/*.cpp",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],

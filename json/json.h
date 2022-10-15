@@ -3,14 +3,12 @@
 #include <string>
 #include <vector>
 #include <map>
+#include "../parser/parser.h"
 using namespace std;
 
 namespace yazi {
 namespace Json {
     
-    union json_value {
-
-    };
     class Json {
         public:
             enum Type {
@@ -125,6 +123,9 @@ namespace Json {
             void remove(int index);
             void remove(const char * key);
             void remove(const string & key);
+
+            // 解析数据，调用parser
+            void parser(const string & str);
         private://json类所包含的数据字段
         //标识json对象类型的m_type，表示json对象数据的m_value
             Type m_type;

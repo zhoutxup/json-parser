@@ -1,5 +1,8 @@
 #include <iostream>
 #include "json/json.h"
+#include "parser/parser.h"
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 using namespace yazi::Json;
@@ -41,12 +44,32 @@ int main() {
     a["int"] = 123;
     cout << a.str() << endl; */
 
-    Json a;
+    /* Json a;
     a["bool"] = true;
     a["name"] = "zhou";
     a["type"] = "int";
     cout << a.str() << endl;
     a.remove("bool");
-    cout << a.str() << endl;
+    cout << a.str() << endl; */
+
+    // 测试parser
+    const string & str = "[\"hello world\", 123, true, false, null]";
+    const string & str1 = "{\"hello world\":123, \"123\":456, \"false\":true, \"null\":null}";
+    const string & str4 = "{\"data\":{\"isLogin\":true}}";
+    Json j;
+
+    ifstream fin("test.json");
+    stringstream ss;
+    ss << fin.rdbuf();
+    const string & str2 = ss.str();
+    j.parser(str2);
+    //bool b = j["data"]["islogin"];
+    //cout << b << endl;
+    // cout << j["data"]["isLogin"].str() << endl;
+    // cout << j["message"].str() << endl;
+    cout << j["data"]["isLogin"].str() << endl;
+    // cout << j["code"].str() << endl;
+    // cout << j["data"]["level_info"]["current_min"].str() << endl;
+    // cout << j.str() << endl;
     return 0;
 }

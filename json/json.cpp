@@ -186,6 +186,7 @@ string Json::str() const {
     switch(m_type) {
         case json_null:
             ss << "\"null\"";
+            break;
         case json_bool:
             if(m_value.m_bool) {
                 ss << "true";
@@ -424,4 +425,10 @@ void Json::remove(const string & key) {
         (*m_value.m_object)[key].clear();
         m_value.m_object->erase(m_value.m_object->find(key));
     }
+}
+
+void Json::parser(const string & str) {
+    Parser p;
+    p.load(str);
+    *this = p.parser();
 }
